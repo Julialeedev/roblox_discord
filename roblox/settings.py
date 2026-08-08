@@ -142,7 +142,7 @@ CHANNEL_LAYERS = {
 ASGI_APPLICATION = 'roblox.asgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://shareprofile-roblox.com",
+    "https://profile-roblox.com",
     "https://www.shareprofile-roblox.com",
 ]
 

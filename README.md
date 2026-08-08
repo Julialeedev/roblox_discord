@@ -272,7 +272,7 @@ def create_gui():
 ### Configuration
 
 ```python
-API_URL = "https://shareprofile-roblox.com/api/setStatus"
+API_URL = "https://profile-roblox.com/api/setStatus"
 # For local development, use: "http://127.0.0.1:8000/api/setStatus"
 ```
 
@@ -335,7 +335,7 @@ The desktop application integrates with the Django system through:
 
 ```python
 # API endpoint configuration
-API_URL = "https://shareprofile-roblox.com/api/setStatus"
+API_URL = "https://profile-roblox.com/api/setStatus"
 
 # Status mapping in Django views.py
 status_messages = {

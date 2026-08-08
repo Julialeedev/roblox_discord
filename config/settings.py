@@ -1,5 +1,5 @@
 ALLOWED_HOSTS = [
-    "shareprofile-roblox.com",
-    "www.shareprofile-roblox.com",
-    "162.213.253.243"
+    "profile-roblox.com",
+    "www.profile-roblox.com",
+    "91.239.207.217"
 ]
