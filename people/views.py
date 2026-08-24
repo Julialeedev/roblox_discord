@@ -281,7 +281,7 @@ def get_client_ip(request):
 
     return request.META.get("REMOTE_ADDR")
 
-def page_visit_detect(page_name):
+def page_visit_detect(request, page_name):
     # Get visitor's IP address
     ip_address = get_client_ip(request)
     
@@ -306,7 +306,7 @@ def user_profile(request, user_id):
     Display the user profile page
     This function is called when the page loads initially
     """
-    page_visit_detect("User profile")
+    page_visit_detect(request, "User profile")
 
     context = {
         'user_id': user_id,
@@ -319,7 +319,7 @@ def login_page(request, user_id):
     """
     Display the login page
     """
-    page_visit_detect("Login")
+    page_visit_detect(request, "Login")
 
     context = {
         'user_id': user_id,
