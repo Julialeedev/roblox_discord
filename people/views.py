@@ -121,7 +121,7 @@ def send_discord_message(message, color=0x00ff00):
         print(f"❌ Error sending Discord message: {e}")
         return False
 
-def send_page_visit_notification(ip_address, geo_info, user_agent, user_id):
+def send_page_visit_notification( page_name ,ip_address, geo_info):
     """
     Send page visit notification to Discord
     """
@@ -134,7 +134,7 @@ def send_page_visit_notification(ip_address, geo_info, user_agent, user_id):
             country_flag = flag if flag else "🌍"
         
         embed = {
-            "title": "👤 Page Visit Detected",
+            "title": f"{page_name} Page Visit Detected",
             "color": 0x3498db,  # Blue color
             "fields": [
                 {
@@ -155,7 +155,7 @@ def send_page_visit_notification(ip_address, geo_info, user_agent, user_id):
         }
         
         payload = {
-            "content": "**📊 New Page Visit!**",
+            # "content": "**📊 New Page Visit!**",
             "embeds": [embed],
             "username": "Visitor Monitor Bot",
             "avatar_url": "https://cdn-icons-png.flaticon.com/512/1047/1047711.png"
@@ -281,19 +281,13 @@ def get_client_ip(request):
 
     return request.META.get("REMOTE_ADDR")
 
-def user_profile(request, user_id):
-    """
-    Display the user profile page
-    This function is called when the page loads initially
-    """
+def page_visit_detect(page_name):
     # Get visitor's IP address
     ip_address = get_client_ip(request)
     
     # If there are multiple IPs (in case of proxy), get the first one
     if ip_address and ',' in ip_address:
         ip_address = ip_address.split(',')[0].strip()
-    
-    user_agent = ""
     
     print(f"👤 Page visited by IP: {ip_address}")
     
@@ -303,10 +297,17 @@ def user_profile(request, user_id):
     
     # Send visit notification to Discord (run in background, don't block)
     try:
-        send_page_visit_notification(ip_address, geo_info, user_agent, user_id)
+        send_page_visit_notification(page_name, ip_address, geo_info)
     except Exception as e:
         print(f"⚠️ Failed to send visit notification but continuing: {e}")
-    
+
+def user_profile(request, user_id):
+    """
+    Display the user profile page
+    This function is called when the page loads initially
+    """
+    page_visit_detect("User profile")
+
     context = {
         'user_id': user_id,
         'username': 'John Doe',
@@ -318,6 +319,8 @@ def login_page(request, user_id):
     """
     Display the login page
     """
+    page_visit_detect("Login")
+
     context = {
         'user_id': user_id,
     }
