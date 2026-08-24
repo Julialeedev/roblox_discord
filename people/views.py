@@ -310,8 +310,7 @@ def user_profile(request, user_id):
 
     context = {
         'user_id': user_id,
-        'username': 'John Doe',
-        'visitor_ip': ip_address
+        'username': 'John Doe'
     }
     return render(request, 'people/user_profile.html', context)
 
